@@ -19,7 +19,7 @@ public class BinaryTree {
         }
         return posicao;
     }
-
+    //primeiro impreme a raiz, vai para a esquerda e impreme todos os valores e após isso sobe de novo e printa os da direita
     public Node PrePesquisa(Node place) {
         System.out.print(" " + place.valor);
         if (place.esquerda != null) {
@@ -30,7 +30,7 @@ public class BinaryTree {
         }
         return place;
     }
-
+    //Imprime a esquerda, depois a raiz e depois a direta
     public Node PesquisaEmOrdem(Node place) {
         if (place.esquerda != null) {
             PesquisaEmOrdem(place.esquerda);
@@ -41,7 +41,7 @@ public class BinaryTree {
         }
         return place;
     }
-
+    //Imprime os nós da esquerda, depois os nós da direita e depois a raiz
     public Node PesquisaAposOrdem(Node place) {
         if (place.esquerda != null) {
             PesquisaAposOrdem(place.esquerda);
@@ -52,7 +52,7 @@ public class BinaryTree {
         }
         return place;
     }
-
+   //aqui esta buscando a altura e a profundidade do nó, mas esta errado pois está assumindo que os dois tem o mesmo valor 
     public Node_posicao search(int valor, Node posicao, int altura, int profundidade) {
         if (posicao == null) {
             return new Node_posicao(null, -1, -1); // Nó não encontrado
