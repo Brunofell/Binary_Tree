@@ -19,6 +19,7 @@ public class Main {
             binaryTree.insert(rand.nextInt(100), binaryTree.raiz);
         }
 
+        //print GERAL das diferentes formas de busca (ta comentado la no BinaryTree como funcionam)
         System.out.println("\nPRE-ORDER");
         binaryTree.PrePesquisa(binaryTree.raiz);
 
@@ -28,11 +29,12 @@ public class Main {
         System.out.println("\nApos-Ordem");
         binaryTree.PesquisaAposOrdem(binaryTree.raiz);
 
+        //aqui esta dizendo se foi encontrado ou não o nó ESCOLHIDO na arvore e mostrando a altura e a profundidade
         System.out.print("\nDigite um valor para procurar na árvore: ");
         int valorProcurado = scanner.nextInt();
 
         Node_posicao resultado = binaryTree.search(valorProcurado, binaryTree.raiz, 0, 0);
-
+        
         if (resultado.node != null) {
             System.out.println("\nValor " + valorProcurado + " encontrado na árvore.");
             System.out.println("Altura do nó: " + resultado.altura);
