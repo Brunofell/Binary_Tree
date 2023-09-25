@@ -69,6 +69,8 @@ public class BinaryTree {
         }
     }
 
+
+
     private Node deletaRecursivo(Node atual, int valor){
         if(atual == null){
             return null; // encontrou nda

@@ -14,9 +14,12 @@ public class Main {
             System.out.println("Tamanho inválido. Utilizando o tamanho padrão de 10.");
             tamanhoArvore = 10;
         }
-        //gera os nós de 0 até 100
+
+        System.out.println("Digite os valores para adicionar à árvore:");
         for (int i = 0; i < tamanhoArvore; i++) {
-            binaryTree.insert(rand.nextInt(100), binaryTree.raiz);
+            System.out.print("Valor " + (i + 1) + ": ");
+            int valor = scanner.nextInt();
+            binaryTree.insert(valor, binaryTree.raiz);
         }
 
         System.out.println("\nPRE-ORDER");
