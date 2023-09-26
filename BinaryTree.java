@@ -1,114 +1,110 @@
 public class BinaryTree {
     Node raiz;
 
-    public Node insert(int valor, Node posicao) {
-        if (posicao == null) {
-            raiz = new Node(valor);
-        } else if (valor < posicao.valor) {
-            if (posicao.esquerda == null) {
-                posicao.esquerda = new Node(valor);
-            } else {
-                insert(valor, posicao.esquerda);
-            }
-        } else if (valor > posicao.valor) {
-            if (posicao.direita == null) {
-                posicao.direita = new Node(valor);
-            } else {
-                insert(valor, posicao.direita);
-            }
+    //MUDEI UM POUCO SEUS METODOS! So simplifiquei na vdd.
+    /// Aqui, ele recebe dois parametros, a posição (A posicao é sempre a raiz) e o valor inserido
+    // ele checa se a posição é = a null, se for retorna o valor naquela posição
+    // checa se o valor inserido é menor que o valor da posição atual, se for, vai pra esquerda
+    // checa se o valor inserido é maior que o valor da posição atual, se for, vai pra direita
+    private Node inserirValor(Node posicao, int valor) {
+        if(posicao == null){
+            return new Node(valor);
+        }
+        if(valor  < posicao.valor){
+            posicao.esquerda = inserirValor(posicao.esquerda, valor);
+        }else if(valor > posicao.valor){
+            posicao.direita = inserirValor(posicao.direita, valor);
+        }else{
+            return posicao;
         }
         return posicao;
     }
-    //primeiro impreme a raiz, vai para a esquerda e impreme todos os valores e após isso sobe de novo e printa os da direita
-    public Node PrePesquisa(Node place) {
-        System.out.print(" " + place.valor);
-        if (place.esquerda != null) {
-            PrePesquisa(place.esquerda);
-        }
-        if (place.direita != null) {
-            PrePesquisa(place.direita);
-        }
-        return place;
+    // Esse aqui é so pra chamar o metodo na main
+    public void inserir(int valor){
+        raiz = inserirValor(raiz, valor);
     }
-    //Imprime a esquerda, depois a raiz e depois a direta
-    public Node PesquisaEmOrdem(Node place) {
-        if (place.esquerda != null) {
-            PesquisaEmOrdem(place.esquerda);
+
+    // MUDEI UM POUCO SEUS METODOS! So simplifiquei na vdd.
+    // Aqui ele recebe a posição e o valor a ser procurado (A posicao é sempre a raiz);
+    // Checa se a posição é null, se for retorna false.
+    // se a posição foi igual ao valor, retorna true
+    // se o valor for menor que a posição atual, ele vai pra esquerda
+    // se o valor for maior que a posição atual, ele vai pra direita (ta no else)
+    private boolean buscarValor(Node posicao, int valor){
+        if(posicao == null){
+            return false;
         }
-        System.out.print(" " + place.valor);
-        if (place.direita != null) {
-            PesquisaEmOrdem(place.direita);
+        if(valor == posicao.valor){
+            return true;
         }
-        return place;
+        if(valor < posicao.valor){
+            return buscarValor(posicao.esquerda, valor);
+        }
+        else {
+            return buscarValor(posicao.direita, valor);
+        }
     }
-    //Imprime os nós da esquerda, depois os nós da direita e depois a raiz
-    public Node PesquisaAposOrdem(Node place) {
-        if (place.esquerda != null) {
-            PesquisaAposOrdem(place.esquerda);
-        }
-        System.out.print(" " + place.valor);
-        if (place.direita != null) {
-            PesquisaAposOrdem(place.direita);
-        }
-        return place;
+    // so pra chamar na main
+    public boolean buscar(int valor){
+        return buscarValor(raiz, valor);
     }
-   //aqui esta buscando a altura e a profundidade do nó, mas esta errado pois está assumindo que os dois tem o mesmo valor 
-    public Node_posicao search(int valor, Node posicao, int altura, int profundidade) {
+
+    private Node deletarValor(Node posicao, int valor) {
         if (posicao == null) {
-            return new Node_posicao(null, -1, -1); // Nó não encontrado
-        }
-
-        if (posicao.valor == valor) {
-            return new Node_posicao(posicao, altura, profundidade);
-        }
-
-        if (valor < posicao.valor) {
-            return search(valor, posicao.esquerda, altura + 1, profundidade + 1);
-        } else {
-            return search(valor, posicao.direita, altura + 1, profundidade + 1);
-        }
-    }
-
-
-
-    private Node deletaRecursivo(Node atual, int valor){
-        if(atual == null){
             return null; // encontrou nda
         }
-        if(valor == atual.valor){
+        if (valor == posicao.valor) {
             // Node não tem filhos
-            if(atual.esquerda == null && atual.direita == null){
+            if (posicao.esquerda == null && posicao.direita == null) {
                 return null;
             }
-            if(atual.direita == null){
-                return atual.esquerda;
+            if (posicao.direita == null) {
+                return posicao.esquerda;
             }
-            if(atual.esquerda == null){
-                return atual.direita;
+            if (posicao.esquerda == null) {
+                return posicao.direita;
             }
-            int smallestValue = menorNo(atual.direita);
-            atual.valor = smallestValue;
-            atual.direita = deletaRecursivo(atual.direita, smallestValue);
-            return atual;
+
+            Node maiorNo = posicao.esquerda;
+            while (maiorNo.direita != null) {
+                maiorNo = maiorNo.direita;
+            }
+
+            posicao.valor = maiorNo.valor;
+            posicao.esquerda = deletarValor(posicao.esquerda, maiorNo.valor);
+            return posicao;
         }
-        if(valor < atual.valor){
-            atual.esquerda = deletaRecursivo(atual.esquerda, valor);
-            return atual;
+        if (valor < posicao.valor) {
+            posicao.esquerda = deletarValor(posicao.esquerda, valor);
+            return posicao;
         }
-        atual.direita = deletaRecursivo(atual.direita, valor);
-        return atual;
+        posicao.direita = deletarValor(posicao.direita, valor);
+        return posicao;
+    }
+    public void deletar(int valor) {
+        raiz = deletarValor(raiz, valor);
     }
 
-    private int menorNo(Node raiz){
-        if(raiz.esquerda == null){
-            return raiz.valor;
-        }else{
-            return menorNo(raiz.esquerda);
+    public void print() {
+        printRecursivo(raiz, 0);
+    }
+    private void printRecursivo(Node posicao, int nivel) {
+        if (posicao == null) {
+            return;
         }
+
+        // Imprime a subárvore direita primeiro (inorder)
+        printRecursivo(posicao.direita, nivel + 1);
+
+        // Imprime o valor do nó atual com base no nível (formato horizontal)
+        for (int i = 0; i < nivel; i++) {
+            System.out.print("    "); // Espaço para indentação
+        }
+        System.out.println(posicao.valor);
+
+        // Imprime a subárvore esquerda depois (inorder)
+        printRecursivo(posicao.esquerda, nivel + 1);
     }
 
-    public void delete(int valor) {
-        raiz = deletaRecursivo(raiz, valor);
-    }
 
 }

@@ -1,49 +1,48 @@
-import java.util.Random;
 import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-        Random rand = new Random();
-        BinaryTree binaryTree = new BinaryTree();
-        Scanner scanner = new Scanner(System.in);
+        BinaryTree arvore = new BinaryTree();
+        Scanner sc = new Scanner(System.in);
 
-        System.out.print("Digite o tamanho da árvore (entre 1 e 50): ");
-        int tamanhoArvore = scanner.nextInt();
+        System.out.println("••••••••ÁRVORE BINÁRIA DE BUSCA••••••••");
+        System.out.println("• INSERIR    [1]                      •");
+        System.out.println("• BUSCAR     [2]                      •");
+        System.out.println("• DELETAR    [3]                      •");
+        System.out.println("• VISUALIZAR [4]                      •");
+        System.out.println("• SAIR       [0]                      •");
+        System.out.println("•••••••••••••••••••••••••••••••••••••••");
 
-        if (tamanhoArvore < 1 || tamanhoArvore > 50) {
-            System.out.println("Tamanho inválido. Utilizando o tamanho padrão de 10.");
-            tamanhoArvore = 10;
-        }
+        while (true){
+            System.out.print("• Digite uma opção: ");
+            int opcao = sc.nextInt();
+            if(opcao == 0){
+                System.out.println("tchau");
+                break;
+            }if(opcao == 1){
+                System.out.print("• insira um elemento na Árvore: ");
+                int elemento = sc.nextInt();
+                arvore.inserir(elemento);
+                System.out.println("• Elemento inserido!");
+                System.out.println(" ");
 
-        System.out.println("Digite os valores para adicionar à árvore:");
-        for (int i = 0; i < tamanhoArvore; i++) {
-            System.out.print("Valor " + (i + 1) + ": ");
-            int valor = scanner.nextInt();
-            binaryTree.insert(valor, binaryTree.raiz);
-        }
+            }if(opcao == 2){
+                System.out.print("• Insira um elemento para busca-lo na Árvore: ");
+                int busca = sc.nextInt();
+                System.out.println(arvore.buscar(busca));
+                System.out.println(" ");
 
-        //print GERAL das diferentes formas de busca (ta comentado la no BinaryTree como funcionam)
-        System.out.println("\nPRE-ORDER");
-        binaryTree.PrePesquisa(binaryTree.raiz);
+            }if(opcao == 3){
+                System.out.print("• Insira um elemento para ser deletado da Árvore: ");
+                int deletar = sc.nextInt();
+                arvore.deletar(deletar);
+                System.out.println(" ");
 
-        System.out.println("\nEM-ORDEM");
-        binaryTree.PesquisaEmOrdem(binaryTree.raiz);
-
-        System.out.println("\nApos-Ordem");
-        binaryTree.PesquisaAposOrdem(binaryTree.raiz);
-
-        //aqui esta dizendo se foi encontrado ou não o nó ESCOLHIDO na arvore e mostrando a altura e a profundidade
-        System.out.print("\nDigite um valor para procurar na árvore: ");
-        int valorProcurado = scanner.nextInt();
-
-        Node_posicao resultado = binaryTree.search(valorProcurado, binaryTree.raiz, 0, 0);
-        
-        if (resultado.node != null) {
-            System.out.println("\nValor " + valorProcurado + " encontrado na árvore.");
-            System.out.println("Altura do nó: " + resultado.altura);
-            System.out.println("Profundidade do nó: " + resultado.profundidade);
-        } else {
-            System.out.println("\nValor " + valorProcurado + " não encontrado na árvore.");
+            }if(opcao == 4){
+                System.out.println(" ");
+                System.out.println("• Vizualização da Árvore: ");
+                arvore.print();
+                System.out.println(" ");
+            }
         }
     }
 }
