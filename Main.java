@@ -16,7 +16,7 @@ public class Main {
             System.out.print("• Digite uma opção: ");
             int opcao = sc.nextInt();
             if(opcao == 0){
-                System.out.println("tchau");
+                System.out.println("tchau (ง •̀_•́)ง");
                 break;
             }if(opcao == 1){
                 System.out.print("• insira um elemento na Árvore: ");

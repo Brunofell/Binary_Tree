@@ -51,34 +51,40 @@ public class BinaryTree {
 
     private Node deletarValor(Node posicao, int valor) {
         if (posicao == null) {
-            return null; // encontrou nda
+            System.out.println("Esse elemento não existe!");
+            return null;
         }
+
         if (valor == posicao.getValor()) {
-            // Node não tem filhos
-            if (posicao.getEsquerda() == null && posicao.getDireita() == null) {
+            if (posicao.getEsquerda() == null && posicao.getDireita() == null) { // no folha
+                System.out.println(posicao.getValor() + " removido");
                 return null;
             }
-            if (posicao.getDireita() == null) {
+
+            if (posicao.getDireita() == null) { // nó com um filho
+                System.out.println("• " + posicao.getValor() + " removido");
                 return posicao.getEsquerda();
             }
-            if (posicao.getEsquerda() == null) {
+            if (posicao.getEsquerda() == null) { // nó com um filho
+                System.out.println("• " + posicao.getValor() + " removido");
                 return posicao.getDireita();
             }
 
-            Node maiorNo = posicao.getEsquerda();
-            while (maiorNo.getDireita() != null) {
-                maiorNo = maiorNo.getDireita();
+            Node maiorNo = posicao.getEsquerda(); // dois filhos
+            while (maiorNo.getDireita() != null) { // maior valor na subárvore esquerda, vai pelos nos da direita
+                maiorNo = maiorNo.getDireita(); // sempre a folha
             }
 
-            posicao.setValor(maiorNo.getValor());
+            posicao.setValor(maiorNo.getValor()); // mudando a raiz
             posicao.setEsquerda(deletarValor(posicao.getEsquerda(), maiorNo.getValor()));
             return posicao;
         }
-        if (valor < posicao.getValor()) {
+
+        if (valor < posicao.getValor()) { //continua a busca
             posicao.setEsquerda(deletarValor(posicao.getEsquerda(), valor));
             return posicao;
         }
-        posicao.setDireita(deletarValor(posicao.getDireita(), valor));
+        posicao.setDireita(deletarValor(posicao.getDireita(), valor)); // subarvore da direita
         return posicao;
     }
     public void deletar(int valor) {
@@ -92,7 +98,6 @@ public class BinaryTree {
         if (posicao == null) {
             return;
         }
-
         // Imprime a subárvore direita primeiro (inorder)
         printRecursivo(posicao.getDireita(), nivel + 1);
 
@@ -105,6 +110,5 @@ public class BinaryTree {
         // Imprime a subárvore esquerda depois (inorder)
         printRecursivo(posicao.getEsquerda(), nivel + 1);
     }
-
 
 }
