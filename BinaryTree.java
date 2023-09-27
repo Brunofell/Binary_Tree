@@ -1,5 +1,5 @@
 public class BinaryTree {
-    Node raiz;
+    private Node raiz;
 
     //MUDEI UM POUCO SEUS METODOS! So simplifiquei na vdd.
     /// Aqui, ele recebe dois parametros, a posição (A posicao é sempre a raiz) e o valor inserido
@@ -10,10 +10,10 @@ public class BinaryTree {
         if(posicao == null){
             return new Node(valor);
         }
-        if(valor  < posicao.valor){
-            posicao.esquerda = inserirValor(posicao.esquerda, valor);
-        }else if(valor > posicao.valor){
-            posicao.direita = inserirValor(posicao.direita, valor);
+        if(valor  < posicao.getValor()){
+            posicao.setEsquerda(inserirValor(posicao.getEsquerda(), valor));
+        }else if(valor > posicao.getValor()){
+            posicao.setDireita(inserirValor(posicao.getDireita(), valor));
         }else{
             return posicao;
         }
@@ -34,14 +34,14 @@ public class BinaryTree {
         if(posicao == null){
             return false;
         }
-        if(valor == posicao.valor){
+        if(valor == posicao.getValor()){
             return true;
         }
-        if(valor < posicao.valor){
-            return buscarValor(posicao.esquerda, valor);
+        if(valor < posicao.getValor()){
+            return buscarValor(posicao.getEsquerda(), valor);
         }
         else {
-            return buscarValor(posicao.direita, valor);
+            return buscarValor(posicao.getDireita(), valor);
         }
     }
     // so pra chamar na main
@@ -53,32 +53,32 @@ public class BinaryTree {
         if (posicao == null) {
             return null; // encontrou nda
         }
-        if (valor == posicao.valor) {
+        if (valor == posicao.getValor()) {
             // Node não tem filhos
-            if (posicao.esquerda == null && posicao.direita == null) {
+            if (posicao.getEsquerda() == null && posicao.getDireita() == null) {
                 return null;
             }
-            if (posicao.direita == null) {
-                return posicao.esquerda;
+            if (posicao.getDireita() == null) {
+                return posicao.getEsquerda();
             }
-            if (posicao.esquerda == null) {
-                return posicao.direita;
-            }
-
-            Node maiorNo = posicao.esquerda;
-            while (maiorNo.direita != null) {
-                maiorNo = maiorNo.direita;
+            if (posicao.getEsquerda() == null) {
+                return posicao.getDireita();
             }
 
-            posicao.valor = maiorNo.valor;
-            posicao.esquerda = deletarValor(posicao.esquerda, maiorNo.valor);
+            Node maiorNo = posicao.getEsquerda();
+            while (maiorNo.getDireita() != null) {
+                maiorNo = maiorNo.getDireita();
+            }
+
+            posicao.setValor(maiorNo.getValor());
+            posicao.setEsquerda(deletarValor(posicao.getEsquerda(), maiorNo.getValor()));
             return posicao;
         }
-        if (valor < posicao.valor) {
-            posicao.esquerda = deletarValor(posicao.esquerda, valor);
+        if (valor < posicao.getValor()) {
+            posicao.setEsquerda(deletarValor(posicao.getEsquerda(), valor));
             return posicao;
         }
-        posicao.direita = deletarValor(posicao.direita, valor);
+        posicao.setDireita(deletarValor(posicao.getDireita(), valor));
         return posicao;
     }
     public void deletar(int valor) {
@@ -94,16 +94,16 @@ public class BinaryTree {
         }
 
         // Imprime a subárvore direita primeiro (inorder)
-        printRecursivo(posicao.direita, nivel + 1);
+        printRecursivo(posicao.getDireita(), nivel + 1);
 
         // Imprime o valor do nó atual com base no nível (formato horizontal)
         for (int i = 0; i < nivel; i++) {
             System.out.print("    "); // Espaço para indentação
         }
-        System.out.println(posicao.valor);
+        System.out.println(posicao.getValor());
 
         // Imprime a subárvore esquerda depois (inorder)
-        printRecursivo(posicao.esquerda, nivel + 1);
+        printRecursivo(posicao.getEsquerda(), nivel + 1);
     }
 
 
