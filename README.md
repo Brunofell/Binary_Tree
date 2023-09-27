@@ -8,5 +8,5 @@ o algoritimo representa uma árvore binária de busca, o usuário começa seleci
 
 <br>
 <p align="center">
-<img src="/PJBL2_BinaryTree/Assets/1.png">
+<img src="/Assets/1.png">
 </p>
