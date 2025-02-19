@@ -1,9 +1,9 @@
-<h1 align="center" style="color: #6f42c1; margin-bottom: 20px;">    Implementação Árvore Binária de Busca em Java</h1>
+<h1 align="center" style="color: #6f42c1; margin-bottom: 20px;">Binary Search Tree Implementation in Java</h1>
 <p align="center">
 <img src="/Assets/arvoreGif.gif">
 </p>
 <p align="center" style="color: #6f42c1; line-height: 1.6;">
-o algoritimo representa uma árvore binária de busca, o usuário começa selecionando entre umas das opções do menu, que são INSERIR, DELETAR, BUSCAR, "PRINTAR" a árvore na tela e SAIR do programa!
+The algorithm represents a binary search tree. The user starts by selecting one of the menu options: INSERT, DELETE, SEARCH, PRINT the tree on the screen, and EXIT the program!
 </p>
 
 <br>
@@ -11,7 +11,7 @@ o algoritimo representa uma árvore binária de busca, o usuário começa seleci
 <img src="/Assets/1.png">
 </p>
 <p align="center" style="color: #6f42c1; line-height: 1.6;">
-Se o usuário escolher a opção 1, INSERIR, ele poderá inserir um número inteiro na árvore, e depois ele voltará para o menu!
+If the user chooses option 1, INSERT, they can insert an integer into the tree, and then return to the menu!
 </p>
 
 <br>
@@ -19,7 +19,7 @@ Se o usuário escolher a opção 1, INSERIR, ele poderá inserir um número inte
 <img src="/Assets/2.png">
 </p>
 <p align="center" style="color: #6f42c1; line-height: 1.6;">
-Na opção 2, o user podera buscar um elemento na árvore, caso o elemento esteja nela, retornará True, se o elemento não estiver na árvore, retornará False!
+In option 2, the user can search for an element in the tree. If the element is present, it will return True; otherwise, it will return False!
 </p>
 
 <br>
@@ -30,7 +30,7 @@ Na opção 2, o user podera buscar um elemento na árvore, caso o elemento estej
 <img src="/Assets/4.png">
 </p>
 <p align="center" style="color: #6f42c1; line-height: 1.6;">
-O usuário também pode ver o esqueleto horizontal da árvore na tela se selecionar a opção 4!
+The user can also view the horizontal structure of the tree on the screen by selecting option 4!
 </p>
 
 <br>
@@ -38,7 +38,7 @@ O usuário também pode ver o esqueleto horizontal da árvore na tela se selecio
 <img src="/Assets/5.png">
 </p>
 <p align="center" style="color: #6f42c1; line-height: 1.6;">
-Ao selecionar a opção 3, o usuário pode deletar um nó da árvore, como mostrado no caso abaixo, além disso o a função de deletar, caso a raiz ou um nó com dois filhos for removido, ele irá fazer a subtituição com a ramificação da esquerda (para pegar o menor nó mais próximo do nó deletado, assim mantendo as propriedades da árvore), caso não exista nada na esquerda ele irá ir para direita!
+By selecting option 3, the user can delete a node from the tree, as shown in the case below. Additionally, the delete function ensures that if the root or a node with two children is removed, it is replaced with the left subtree (to find the closest smaller node, maintaining the tree properties). If there is nothing on the left, it will move to the right!
 </p>
 
 <br>
@@ -46,7 +46,7 @@ Ao selecionar a opção 3, o usuário pode deletar um nó da árvore, como mostr
 <img src="/Assets/6.png">
 </p>
 <p align="center" style="color: #6f42c1; line-height: 1.6;">
-E se digitar 0, ele encerrará o programa ;-;
+And if you enter 0, the program will exit ;-;
 </p>
 
 <br>
